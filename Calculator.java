@@ -28,7 +28,7 @@ How to handle invalid menu choices?
 public class Calculator {
 	public static void main (String[]args){
 	//display menu 
-	double sum = 0;
+	int sum = 0;
 	
 
 	System.out.println("1. add");
@@ -36,49 +36,61 @@ public class Calculator {
 	System.out.println("3. multiply");
 	System.out.println("4. divide");
 	System.out.println("5. Exit");
-	
 
-	//Get user input 
-	Scanner scrn = new Scanner(System.in);
-	System.out.println("Enter an operation");
-	String operation = scrn.next();
-	
-	
-	
 	//next step to add condtions for when they type add subtract or multply 
 	//if they enter exit and want to stop
+	Scanner scrn = new Scanner(System.in);
+	String operation = scrn.nextLine().trim().toLowerCase();
+
+	//if they dont want too continute then done but i wonder if it should be a while loop??
 	if (operation.equals("exit")) {
 		System.out.println("finished");
+		
+		
+	} 
 	
-	}
+	//declare numbers 
+	int num1;
+	int num2;
 	
-	
-	
-	int num1 = scrn.nextInt();
-	System.out.println("Enter first number:");
-	int num2 = scrn.nextInt();
-	System.out.println("Enter second number:");
 
 	
 	//switch case or if else
 	switch(operation) {
 			case "add": 
+				System.out.println("enter number 1:");
+				num1 = scrn.nextInt();
+				System.out.println("enter number 2:");
+				num2 = scrn.nextInt();
 				sum = num1 + num2 ;
 				System.out.println(sum);
 				break;
-			case "subtract": 
+			case "subtract":
+				System.out.println("enter number 1:");
+				num1 = scrn.nextInt();
+				System.out.println("enter number 2:");
+				num2 = scrn.nextInt();
 				sum = num1 - num2;
 				System.out.println(sum);
 				break;
-			case "multiply": 
+			case "multiply":
+				System.out.println("enter number 1:");
+				num1 = scrn.nextInt();
+				System.out.println("enter number 2:");
+				num2 = scrn.nextInt();
 				sum = num1 * num2;
 				System.out.println(sum);
 				break;
 			case "divide": 
+				System.out.println("enter number 1:");
+				num1 = scrn.nextInt();
+				System.out.println("enter number 2:");
+				num2 = scrn.nextInt();
 				sum = num1 / num2;
 				System.out.println(sum);
 				break;
 			default: //if user enters anything else than the options
+				System.out.println("That operation doesnt exist");
 				break; 
 	
 	
