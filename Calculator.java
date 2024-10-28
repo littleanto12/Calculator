@@ -1,104 +1,105 @@
 import java.util.Scanner;
-//set up the program
-
-/* NOTES: 
-Create a simple calculator that:
-
-Asks for two numbers
-Performs one operation (start with addition)
-Shows the result
-
-Extend to include:
-Subtraction
-Multiplication
-Division (think about division by zero!)
-
-Day 3-4: Menu System
-3. Create a menu that:
-
-Shows options for each operation
-Lets user choose operation
-Keeps running until user wants to exit
-
-Add error handling:
-
-What if user enters letters instead of numbers?
-How to handle invalid menu choices?
+/*
+NOTE: making sure to take only +-x/ only
 */
 public class Calculator {
-	public static void main (String[]args){
-	//display menu 
-	int sum = 0;
-	
+	//instance variables
+	private double results;
+	private String operation;
+	private double num1;
+	private double num2;
 
-	System.out.println("1. add");
-	System.out.println("2. subtract");
-	System.out.println("3. multiply");
-	System.out.println("4. divide");
-	System.out.println("5. Exit");
+	//constructor 
+	public Calculator(){
+		Scanner scrn = new Scanner(System.in);
+		results = 0;
+		System.out.println("enter number 1: ");
+		num1 = scrn.nextDouble();
+		System.out.println("enter operation: ");
+		this.operation = scrn.next();
+		System.out.println("enter number 2: ");
+		num2 = scrn.nextDouble();
+	}
+	//getters
+	public String getResults(){
+		if (results % 1 == 0) {
+			return String.format("%.0f", results);
+		} else {
+			return String.valueOf(results);
+		}
+	}
 
-	//next step to add condtions for when they type add subtract or multply 
-	//if they enter exit and want to stop
-	Scanner scrn = new Scanner(System.in);
-	String operation = scrn.nextLine().trim().toLowerCase();
+	public String getOperation(){
+		return operation;
+	}
 
-	//if they dont want too continute then done but i wonder if it should be a while loop??
-	if (operation.equals("exit")) {
-		System.out.println("finished");
-		
-		
-	} 
-	
-	//declare numbers 
-	int num1;
-	int num2;
-	
+	public double num1(){
+		return num1;
+	}
 
-	
+	public double num2(){
+		return num2;
+	}
+
+	//setters
+	public void setResults(double results){
+		this.results = results;
+		/*
+		if (results % 1 == 0) {
+			this.results = (int)results;
+		} else {
+			this.results = results;
+		}
+		*/
+	}
+
+	public void setOperation(String operation){
+		this.operation = operation;
+	}
+
+	public void setNum1(double num1){
+		this.num1 = num1;
+	}
+
+	public void num2(double num2){
+		this.num2 = num2;
+	}
+
+
 	//switch case or if else
-	switch(operation) {
-			case "add": 
-				System.out.println("enter number 1:");
-				num1 = scrn.nextInt();
-				System.out.println("enter number 2:");
-				num2 = scrn.nextInt();
-				sum = num1 + num2 ;
-				System.out.println(sum);
-				break;
-			case "subtract":
-				System.out.println("enter number 1:");
-				num1 = scrn.nextInt();
-				System.out.println("enter number 2:");
-				num2 = scrn.nextInt();
-				sum = num1 - num2;
-				System.out.println(sum);
-				break;
-			case "multiply":
-				System.out.println("enter number 1:");
-				num1 = scrn.nextInt();
-				System.out.println("enter number 2:");
-				num2 = scrn.nextInt();
-				sum = num1 * num2;
-				System.out.println(sum);
-				break;
-			case "divide": 
-				System.out.println("enter number 1:");
-				num1 = scrn.nextInt();
-				System.out.println("enter number 2:");
-				num2 = scrn.nextInt();
-				sum = num1 / num2;
-				System.out.println(sum);
-				break;
-			default: //if user enters anything else than the options
-				System.out.println("That operation doesnt exist");
-				break; 
-	
-	
+	public double userChoice(){
+		switch(operation) {
+				case "add": 
+					results = num1 + num2 ;
+					break;
+				case "subtract": 
+					results = num1 - num2;
+					break;
+				case "multiply": 
+					results = num1 * num2;
+					break;
+				case "divide": 
+					if (num2 != 0){
+						results = num1 / num2;
+					}
+					break;
+				default: //if user enters anything else than the options
+					break; 
+		}
+		return results;
+	}
+
+	public void theResults(){
+		userChoice(); // doing calculations
+		System.out.println(getResults()); //showing results 
 	}
 	
 
-	
-	
+	public static void main (String[]args){
+		//object created
+		Calculator calculator = new Calculator();
+		//calling menu 
+		calculator.theResults();
 	
 	}
 
